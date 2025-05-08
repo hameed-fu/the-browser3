@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "Private Browser",
+    "slug": "private-browser-app",
+    "version": "1.0.0",
+    "orientation": "default",
+    "icon": "./assets/images/icon.png",
+    "scheme": "private-browser",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#1F1F1F"
+    },
+    "android": {
+      "package": "com.privacybrowser.app",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#1F1F1F"
+      },
+      "permissions": [
+        "INTERNET",
+        "FOREGROUND_SERVICE"
+      ],
+      "features": [
+        {
+          "name": "android.software.leanback",
+          "required": false
+        }
+      ]
+    },
+    "plugins": ["expo-router"],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

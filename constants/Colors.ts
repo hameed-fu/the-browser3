@@ -1,0 +1,28 @@
+export default {
+  light: {
+    text: '#000000',
+    textSecondary: '#666666',
+    background: '#f5f5f5',
+    tint: '#6200ee',
+    tabIconDefault: '#cccccc',
+    tabIconSelected: '#6200ee',
+    card: '#ffffff',
+    border: '#e0e0e0',
+    error: '#B00020',
+    success: '#28a745',
+    warning: '#ffc107',
+  },
+  dark: {
+    text: '#ffffff',
+    textSecondary: '#a0a0a0',
+    background: '#121212',
+    tint: '#bb86fc',
+    tabIconDefault: '#666666',
+    tabIconSelected: '#bb86fc',
+    card: '#1e1e1e',
+    border: '#333333',
+    error: '#cf6679',
+    success: '#4ade80',
+    warning: '#fbbf24',
+  },
+};
