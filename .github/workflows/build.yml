@@ -26,9 +26,3 @@ jobs:
 
       - name: Build APK
         run: eas build --platform android --profile production --non-interactive
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: apk-build-log
-          path: ./  # You can update this to match any file you'd like to store (e.g., log file)
