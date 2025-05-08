@@ -1,17 +1,18 @@
 name: Build Expo APK
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
-  workflow_dispatch:
 
 jobs:
-  build-apk:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -19,14 +20,14 @@ jobs:
           node-version: 18
 
       - name: Install EAS CLI
-        run: npm install -g eas-cli@latest
+        run: npm install -g eas-cli
 
-      - name: Authenticate with Expo
+      - name: Verify Expo Token is available
+        run: echo "EXPO_TOKEN is available"
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-        run: echo "Expo token is set"
 
-      - name: Build APK
-        env:
-          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+      - name: Run EAS Build for Android APK
         run: eas build --platform android --profile production --non-interactive
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
