@@ -1,39 +1,34 @@
-name: Build Android APK
+name: Build Expo APK
 
 on:
   push:
     branches:
       - main
-      - master
   workflow_dispatch:
 
 jobs:
-  build:
+  build-apk:
     runs-on: ubuntu-latest
-    steps:
-      - name: 🏗 Setup repository
-        uses: actions/checkout@v3
 
-      - name: 🏗 Setup Node
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18.x
-          cache: npm
+          node-version: 18
 
-      - name: 🏗 Setup EAS
-        uses: expo/expo-github-action@v8
-        with:
-          eas-version: latest
-          token: ${{ secrets.EXPO_TOKEN }}
+      - name: Install EAS CLI
+        run: npm install -g eas-cli
 
-      - name: 📦 Install dependencies
-        run: npm install
+      - name: Authenticate with Expo
+        run: eas login --token ${{ secrets.EXPO_TOKEN }}
 
-      - name: 🚀 Build APK
-        run: npx eas build --platform android --profile preview --non-interactive
+      - name: Build APK
+        run: eas build --platform android --profile production --non-interactive
 
-      - name: 📱 Upload APK
+      - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: app-preview
-          path: build/*.apk
+          name: apk-build-log
+          path: ./  # You can update this to match any file you'd like to store (e.g., log file)
